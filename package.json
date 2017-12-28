@@ -1,0 +1,22 @@
+{
+  "name": "@philgs/spawn",
+  "version": "1.0.0",
+  "description": "Launch a script into a separate process with custom environment variables",
+  "main": "index.js",
+  "bin": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/philgs/spawn.git"
+  },
+  "author": {
+    "name": "Phil Gates-Shannon",
+    "email": "phil.gs@gmail.com",
+    "url": "http://philgs.me"
+  },
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "app-root-path": "^2.0.1",
+    "lodash": "^4.17.4"
+  }
+}
