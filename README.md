@@ -14,6 +14,12 @@ Define your custom environment variables in `<app-root>/config/config.json` usin
 }
 ```
 
+You can supply an alternate path to the configuration file with the `-c` or `--config` command line flag (relative paths are resolved by using the current application directory (detected by looking for a `node_modules` subdirectory) as a base):
+
+```bash
+spawn -c ../some/other/config.json
+```
+
 Then use `spawn` in the "scripts" section of your `package.json`, like so:
 
 ```json

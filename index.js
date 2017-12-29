@@ -1,6 +1,5 @@
 #! /usr/bin/env node
 
-// TODO Verify correct functioning when integrated into another project
 // TODO Add .npmignore and publish
 
 const appRoot = require('app-root-path');
@@ -9,16 +8,23 @@ const fs = require( 'fs' );
 const path = require( 'path' );
 const _ = require( 'lodash' );
 
+const APP_ROOT = appRoot.toString();
+const DEFAULT_CONFIG_FILE = path.resolve( APP_ROOT, 'config/config.json' );
+
+// Parse command line options -- use custom processing so that subprocess args are not parsed here
+const customConfigFile = ( process.argv[2] === '-c' || process.argv[2] === '--config' ) ? process.argv[3] : false;
+
 // Read environment variables from file
-const configFilePath = path.resolve( appRoot.toString(), 'config/config.json' );
+const configFilePath = ( customConfigFile ) ? path.resolve( APP_ROOT, customConfigFile ) : DEFAULT_CONFIG_FILE;
 const configFile = JSON.parse( fs.readFileSync( configFilePath ) );
 const config = configFile.data;
 
 // Spawn a child process
-const command = process.argv[ 2 ];
-const args = process.argv.slice( 3 );
+const subprocessArgIndex = ( customConfigFile ) ? 4 : 2;
+const command = process.argv[ subprocessArgIndex ];
+const args = process.argv.slice( subprocessArgIndex + 1 );
 const spawnOptions = {
-    cwd: appRoot.toString(),
+    cwd: APP_ROOT,
     env: _.merge( {}, config, process.env ),
     shell: true,
     stdio: 'inherit'
