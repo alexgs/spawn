@@ -1,7 +1,5 @@
 #! /usr/bin/env node
 
-// TODO Add .npmignore and publish
-
 const appRoot = require('app-root-path');
 const child_process = require( 'child_process' );
 const fs = require( 'fs' );
